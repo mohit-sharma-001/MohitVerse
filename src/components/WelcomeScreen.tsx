@@ -48,27 +48,28 @@ export default function WelcomeScreen({
           colors={["#a6c8ff", "#5fc6f2ff", "#ff9ffc"]}
           backgroundColor="#0a29ff"
           speed={0.5}
-          streakCount={3}
+          streakCount={5}
           streakWidth={0.9}
           streakLength={1.4}
-          density={0.5}
+          density={0.7}
           twinkle={1}
-          glow={0.9}
-          backgroundGlow={0.5}
+          glow={0.6}
+          backgroundGlow={0.25}
           zoom={3}
           opacity={1}
           mouseInteraction={true}
-          mouseStrength={0.5}
-          mouseRadius={1}
+          mouseStrength={1.0}
+          mouseRadius={0.2}
+          mouseDampening={0}
         />
       </div>
-      {/* ── Ambient background glow ─────────────────────────────── */}
+      {/* ── Ambient background vignette for text legibility ────── */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 70% 50% at 50% 50%, rgba(139,92,246,0.07) 0%, transparent 70%)",
+            "radial-gradient(ellipse 65% 50% at 50% 50%, rgba(9,9,15,0.65) 0%, rgba(9,9,15,0.3) 60%, transparent 100%)",
         }}
       />
 
@@ -85,20 +86,20 @@ export default function WelcomeScreen({
 
       {/* ── Main content stack ───────────────────────────────────── */}
       <div className="relative z-10 flex w-full flex-col items-center gap-6 sm:gap-7 text-center">
-        {/* 1. Particle text — compact glowing centered format */}
+        {/* 1. Particle text — high contrast glowing centered format */}
         <ParticleText
           text={"WELCOME TO\nMOHIT VERSE"}
           color="#ffffff"
-          highlightColor="#8b5cf6"
+          highlightColor="#38bdf8"
           trigger="mount"
           fontSize="clamp(2.5rem, 6.5vw, 5.2rem)"
           fontWeight={800}
-          particleSize={2.0}
+          particleSize={2.4}
           density={3}
           scatter={120}
           glow
           onComplete={handleParticleComplete}
-          className="w-full max-w-4xl h-[260px] sm:h-[320px]"
+          className="w-full max-w-4xl h-[260px] sm:h-[320px] drop-shadow-[0_0_25px_rgba(56,189,248,0.35)]"
         />
 
         {/* 2. Tagline + CTA — fade in after particles finish with equal spacing */}

@@ -158,7 +158,7 @@ void mainImage(out vec4 o, vec2 C) {
     vec2 mN = (iMouse + iMouse - r) / r.x;
     float md = length(uv0 - mN);
     mGlow = exp(-md * md / max(uMouseRadius * uMouseRadius, 1e-4)) * uMouseStrength;
-    O.rgb += uMouseColor * mGlow * 0.25;
+    O.rgb += uMouseColor * mGlow * 0.45;
   }
 
   float zr = 5e-4 * uStreakWidth;
@@ -210,7 +210,7 @@ const Lightfall: React.FC<LightfallProps> = ({
   opacity = 1,
   mouseInteraction = true,
   mouseStrength = 0.5,
-  mouseRadius = 1,
+  mouseRadius = 0.4,
   mouseDampening = 0.15,
   mixBlendMode
 }) => {
@@ -302,7 +302,7 @@ const Lightfall: React.FC<LightfallProps> = ({
       }
     };
     if (mouseInteraction) {
-      canvas.addEventListener('pointermove', onPointerMove);
+      window.addEventListener('pointermove', onPointerMove);
     }
 
     const loop = (t: number) => {
@@ -334,7 +334,7 @@ const Lightfall: React.FC<LightfallProps> = ({
 
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
-      if (mouseInteraction) canvas.removeEventListener('pointermove', onPointerMove);
+      if (mouseInteraction) window.removeEventListener('pointermove', onPointerMove);
       ro.disconnect();
       if (canvas.parentElement === container) {
         container.removeChild(canvas);
