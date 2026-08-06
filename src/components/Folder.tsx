@@ -9,6 +9,8 @@ export interface FolderProps {
   className?: string;
   onFolderOpen?: () => void;
   hintLabel?: string;
+  isOpen?: boolean;
+  showPapers?: boolean;
 }
 
 const darkenColor = (hex: string, percent: number): string => {
@@ -35,7 +37,9 @@ const Folder: React.FC<FolderProps> = ({
   items = [],
   className = '',
   onFolderOpen,
-  hintLabel = 'EXPLORE'
+  hintLabel = 'EXPLORE',
+  isOpen,
+  showPapers = true
 }) => {
   const maxItems = 3;
   const papers = items.slice(0, maxItems);
@@ -43,7 +47,9 @@ const Folder: React.FC<FolderProps> = ({
     papers.push(null);
   }
 
-  const [open, setOpen] = useState(false);
+  const [internalOpen, setInternalOpen] = useState(false);
+  const open = isOpen !== undefined ? isOpen : internalOpen;
+
   const [paperOffsets, setPaperOffsets] = useState<{ x: number; y: number }[]>(
     Array.from({ length: maxItems }, () => ({ x: 0, y: 0 }))
   );
@@ -53,8 +59,11 @@ const Folder: React.FC<FolderProps> = ({
   const paper2 = darkenColor('#ffffff', 0.08);
   const paper3 = '#ffffff';
 
-  const handleClick = () => {
-    setOpen(prev => !prev);
+  const handleClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (isOpen === undefined) {
+      setInternalOpen(prev => !prev);
+    }
     if (open) {
       setPaperOffsets(Array.from({ length: maxItems }, () => ({ x: 0, y: 0 })));
     }
@@ -118,7 +127,7 @@ const Folder: React.FC<FolderProps> = ({
           onKeyDown={e => {
             if (e.key === 'Enter' || e.key === ' ') {
               e.preventDefault();
-              handleClick();
+              handleClick(e as any);
             }
           }}
           tabIndex={0}
@@ -134,7 +143,7 @@ const Folder: React.FC<FolderProps> = ({
               className="absolute z-0 bottom-[98%] left-0 w-[30px] h-[10px] rounded-tl-[5px] rounded-tr-[5px] rounded-bl-0 rounded-br-0"
               style={{ backgroundColor: folderBackColor }}
             ></span>
-            {papers.map((item, i) => {
+            {showPapers && papers.map((item, i) => {
               let sizeClasses = '';
               if (i === 0) sizeClasses = open ? 'w-[70%] h-[80%]' : 'w-[70%] h-[80%]';
               if (i === 1) sizeClasses = open ? 'w-[80%] h-[80%]' : 'w-[80%] h-[70%]';

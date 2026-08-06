@@ -14,10 +14,10 @@ export default function IntroPage() {
   const [isEntering, setIsEntering] = useState(true);
 
   useEffect(() => {
-    // Fade out transition overlay ~300ms after component mounts
+    // Smoothly fade out entrance transition overlay ~600ms after mounting
     const timer = setTimeout(() => {
       setIsEntering(false);
-    }, 300);
+    }, 600);
     return () => clearTimeout(timer);
   }, []);
 
@@ -27,7 +27,7 @@ export default function IntroPage() {
 
   return (
     <main className="relative w-full min-h-screen" style={{ backgroundColor: "#09090f" }}>
-      <GridScanOverlay active={isEntering} />
+      <GridScanOverlay active={isEntering} destinationName="INTRO_SECTION" />
       <IntroSection onFolderOpen={handleFolderOpen} />
     </main>
   );
