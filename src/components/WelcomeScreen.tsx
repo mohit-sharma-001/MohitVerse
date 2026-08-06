@@ -86,7 +86,7 @@ export default function WelcomeScreen({
 
       {/* ── Main content stack ───────────────────────────────────── */}
       <div className="relative z-10 flex w-full flex-col items-center gap-6 sm:gap-7 text-center">
-        {/* 1. Particle text — high contrast glowing centered format */}
+        {/* 1. Particle text — optimized particle count (density=5, particleSize=2.8) for smooth 60 FPS */}
         <ParticleText
           text={"WELCOME TO\nMOHIT VERSE"}
           color="#ffffff"
@@ -94,8 +94,8 @@ export default function WelcomeScreen({
           trigger="mount"
           fontSize="clamp(2.5rem, 6.5vw, 5.2rem)"
           fontWeight={800}
-          particleSize={2.4}
-          density={3}
+          particleSize={2.8}
+          density={5}
           scatter={120}
           glow
           onComplete={handleParticleComplete}
@@ -118,94 +118,23 @@ export default function WelcomeScreen({
               aria-hidden="true"
               className="absolute -inset-1 rounded-xl bg-gradient-to-r from-violet-600 via-fuchsia-500 to-indigo-600 opacity-50 blur-lg transition-all duration-700 group-hover:opacity-80"
             />
-            <div className="relative rounded-xl border border-violet-500/30 bg-[#0c0c16]/80 px-6 py-3 shadow-[0_0_30px_rgba(139,92,246,0.25)] backdrop-blur-md">
-              <p className="text-base font-extrabold tracking-wider sm:text-lg md:text-xl lg:text-2xl text-transparent bg-clip-text bg-gradient-to-r from-purple-200 via-white to-pink-300 drop-shadow-[0_0_20px_rgba(168,85,247,0.7)]">
-                ⚡ Building things I wish existed. 🚀
+            <div className="relative rounded-xl border border-white/10 bg-black/60 px-6 py-3.5 backdrop-blur-md">
+              <p className="text-sm font-semibold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-purple-200 via-white to-pink-200 sm:text-base md:text-lg">
+                Crafting Intelligent Systems & Digital Experiences
               </p>
             </div>
           </div>
 
+          {/* CTA Button — Specular glow effect button */}
           <SpecularButton
-            size="lg"
-            radius={9999}
-            lineColor="#a78bfa"
-            baseColor="#5b21b6"
-            tint="#8b5cf6"
-            tintOpacity={0.2}
-            blur={12}
-            textColor="#ffffff"
-            intensity={1.4}
             onClick={handleEnterClick}
+            size="lg"
+            className="shadow-[0_0_40px_rgba(139,92,246,0.35)] hover:shadow-[0_0_60px_rgba(139,92,246,0.6)]"
           >
-            <span className="flex items-center gap-2 font-semibold tracking-widest uppercase text-sm">
-              Let&apos;s Get Started
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="h-4 w-4"
-                aria-hidden="true"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </span>
+            Let&apos;s Get Started
           </SpecularButton>
         </div>
       </div>
-
-      {/* ── Decorative corner accents ────────────────────────────── */}
-      <CornerAccent position="top-left" />
-      <CornerAccent position="top-right" />
-      <CornerAccent position="bottom-left" />
-      <CornerAccent position="bottom-right" />
     </section>
-  );
-}
-
-/* ─── Corner decorative accent lines ──────────────────────────────── */
-function CornerAccent({
-  position,
-}: {
-  position: "top-left" | "top-right" | "bottom-left" | "bottom-right";
-}) {
-  const posClasses: Record<string, string> = {
-    "top-left": "top-6 left-6",
-    "top-right": "top-6 right-6",
-    "bottom-left": "bottom-6 left-6",
-    "bottom-right": "bottom-6 right-6",
-  };
-
-  const rotateMap: Record<string, string> = {
-    "top-left": "0deg",
-    "top-right": "90deg",
-    "bottom-left": "270deg",
-    "bottom-right": "180deg",
-  };
-
-  return (
-    <div
-      aria-hidden="true"
-      className={`pointer-events-none absolute ${posClasses[position]}`}
-      style={{ transform: `rotate(${rotateMap[position]})` }}
-    >
-      <svg
-        width="28"
-        height="28"
-        viewBox="0 0 28 28"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M1 27V4C1 2.34315 2.34315 1 4 1H27"
-          stroke="rgba(139,92,246,0.4)"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-        />
-      </svg>
-    </div>
   );
 }

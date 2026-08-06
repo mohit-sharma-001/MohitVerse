@@ -100,8 +100,8 @@ const waitForFonts = async (font: string): Promise<void> => {
 
 const ParticleText = ({
   text = 'React Bits',
-  particleSize = 2,
-  density = 4,
+  particleSize = 2.8,
+  density = 5,
   color = '#ffffff',
   highlightColor = '#8b5cf6',
   scatter = 180,

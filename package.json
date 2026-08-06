@@ -9,10 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/three": "^0.185.4",
     "next": "14.2.35",
     "ogl": "^1.0.11",
+    "postprocessing": "^6.39.4",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "three": "^0.185.1"
   },
   "devDependencies": {
     "@types/node": "^20",
