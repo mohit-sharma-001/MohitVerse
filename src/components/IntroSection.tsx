@@ -97,6 +97,8 @@ export default function IntroSection({ onFolderOpen }: IntroSectionProps) {
       console.log(`[MOHITVERSE] Flashcard clicked: ${key}`);
       if (key === "about") {
         router.push("/about");
+      } else if (key === "experience") {
+        router.push("/experience");
       } else {
         router.push(`/#${key}`);
       }
