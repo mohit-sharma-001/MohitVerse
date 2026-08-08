@@ -27,7 +27,7 @@ export default function ExperiencePage() {
 
   return (
     <main
-      className="relative w-full h-screen overflow-hidden text-white selection:bg-purple-500/30 selection:text-white flex flex-col"
+      className="relative w-full min-h-screen text-white selection:bg-purple-500/30 selection:text-white overflow-hidden"
       style={{ backgroundColor: "#09090f" }}
     >
       {/* Full-page Ambient Background Layer (DotField) */}
@@ -47,10 +47,9 @@ export default function ExperiencePage() {
 
       <GridScanOverlay active={isEntering} destinationName="EXPERIENCE" />
 
-      {/* Static Top Header & Heading Section (Sits outside ScrollStack) */}
-      <div className="relative z-30 w-full shrink-0 flex flex-col">
-        {/* Top Header / Back Navigation */}
-        <header className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 flex items-center justify-between">
+      {/* Top Navigation & EXPERIENCE Heading */}
+      <div className="relative z-30 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <header className="w-full max-w-7xl mx-auto pt-6 sm:pt-8 flex items-center justify-between">
           <Link
             href="/intro"
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 hover:border-purple-500/50 hover:bg-purple-900/20 text-xs sm:text-sm font-mono text-slate-300 hover:text-white transition-all duration-300 group shadow-lg backdrop-blur-md"
@@ -73,26 +72,25 @@ export default function ExperiencePage() {
         </header>
 
         {/* 1. "EXPERIENCE" Heading with FoldText */}
-        <div className="relative w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-20 sm:h-28 flex items-center justify-center overflow-hidden pt-4 pb-2 text-center">
+        <div className="relative w-full max-w-5xl mx-auto h-24 sm:h-32 flex items-center justify-center overflow-visible pt-4 pb-2 text-center">
           <FoldText
             text="EXPERIENCE"
-            fontSize={56}
+            fontSize="clamp(2.5rem, 6vw, 4.25rem)"
             fontWeight={800}
             color="#ffffff"
             splitBy="char"
             hinge="top"
-            duration={0.7}
-            stagger={0.04}
+            duration={0.9}
+            stagger={0.05}
+            delay={0.6}
+            creaseShading={0.8}
             trigger="mount"
           />
         </div>
       </div>
 
-      {/* 2. Self-Contained ScrollStack Box (Bounded in viewport) */}
-      <div
-        className="relative z-10 w-full max-w-5xl mx-auto flex-1 overflow-hidden px-4 sm:px-6 lg:px-8"
-        style={{ height: "calc(100vh - 170px)" }}
-      >
+      {/* 2. Direct single wrapper with 70vh height around ScrollStack */}
+      <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8" style={{ height: "70vh" }}>
         <ScrollStack
           useWindowScroll={false}
           itemDistance={100}
