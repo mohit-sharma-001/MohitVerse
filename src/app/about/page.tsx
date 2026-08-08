@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import ProfileCard from "@/components/ProfileCard";
-import TextPressure from "@/components/TextPressure";
+import StrokeText from "@/components/StrokeText";
 import DotField from "@/components/DotField";
 import GridScanOverlay from "@/components/GridScanOverlay";
 
@@ -127,17 +127,20 @@ export default function AboutPage() {
           {/* Right Column: Narrative & Sections (Scrollable) */}
           <div className="md:col-span-7 lg:col-span-8 flex flex-col space-y-14 sm:space-y-16 lg:space-y-20">
             
-            {/* 1. "About Me" Heading with TextPressure */}
+            {/* 1. "ABOUT ME" Heading with StrokeText */}
             <div className="relative w-full h-24 sm:h-28 flex items-center justify-start overflow-hidden">
-              <TextPressure
+              <StrokeText
                 text="ABOUT ME"
-                textColor="#ffffff"
                 strokeColor="#8b5cf6"
-                stroke={true}
-                strokeWidth={3}
-                minFontSize={48}
-                scale={false}
-                fontFamily="Roboto Flex"
+                fillColor="#ffffff"
+                strokeWidth={2}
+                fontSize={72}
+                fontWeight={800}
+                letterSpacing={-2}
+                trigger="mount"
+                fillMode="wipe"
+                drawDuration={1.6}
+                fillDelay={0.2}
               />
             </div>
 

@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import FoldText from "@/components/FoldText";
-import DotField from "@/components/DotField";
+import WebThreads from "@/components/WebThreads";
 import GridScanOverlay from "@/components/GridScanOverlay";
 import ScrollStack, { ScrollStackItem } from "@/components/ScrollStack";
 
@@ -30,18 +30,22 @@ export default function ExperiencePage() {
       className="relative w-full min-h-screen text-white selection:bg-purple-500/30 selection:text-white overflow-hidden"
       style={{ backgroundColor: "#09090f" }}
     >
-      {/* Full-page Ambient Background Layer (DotField) */}
+      {/* Full-page Ambient Background Layer (WebThreads) */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <DotField
-          dotRadius={2.5}
-          dotSpacing={20}
-          cursorRadius={450}
-          bulgeStrength={60}
-          glowRadius={0}
-          gradientFrom="rgba(139, 92, 246, 0.55)"
-          gradientTo="rgba(139, 92, 246, 0.28)"
-          glowColor="#8b5cf6"
-          sparkle={true}
+        <WebThreads
+          color1="#8b5cf6"
+          color2="#ec4899"
+          color3="#3b82f6"
+          speed={0.2}
+          threadCount={7}
+          frequency={4.5}
+          spread={0.22}
+          position={0.5}
+          glow={0.03}
+          thickness={1.2}
+          brightness={0.7}
+          opacity={0.85}
+          mouseInteraction={true}
         />
       </div>
 

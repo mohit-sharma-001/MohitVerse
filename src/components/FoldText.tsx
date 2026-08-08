@@ -60,8 +60,8 @@ const FOLD_TEXT_STYLES = `.fold-text {
   color: var(--fold-text-color, currentColor);
   font-size: var(--fold-text-font-size, inherit);
   font-weight: var(--fold-text-font-weight, inherit);
-  line-height: 1;
-  letter-spacing: -0.02em;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
   white-space: pre-wrap;
   user-select: text;
 }
@@ -79,7 +79,7 @@ const FOLD_TEXT_STYLES = `.fold-text {
 }
 
 .fold-text-visual {
-  display: inline-block;
+  display: inline;
 }
 
 .fold-text-line {
@@ -93,7 +93,7 @@ const FOLD_TEXT_STYLES = `.fold-text {
 .fold-text-segment {
   display: inline-block;
   line-height: inherit;
-  perspective: var(--fold-perspective, 800px);
+  perspective: var(--fold-perspective, 700px);
   transform-style: preserve-3d;
   vertical-align: baseline;
 }
@@ -118,23 +118,24 @@ const FOLD_TEXT_STYLES = `.fold-text {
   inset: -0.08em -0.02em;
   pointer-events: none;
   opacity: var(--fold-crease, 0);
+  mix-blend-mode: multiply;
   border-radius: 0.08em;
 }
 
 .fold-text-piece[data-fold-hinge='top']::after {
-  background: linear-gradient(180deg, rgba(139, 92, 246, 0.9) 0%, rgba(0, 0, 0, 0.6) 50%, transparent 100%);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.58) 0%, rgba(0, 0, 0, 0.22) 42%, rgba(255, 255, 255, 0.26) 100%);
 }
 
 .fold-text-piece[data-fold-hinge='bottom']::after {
-  background: linear-gradient(0deg, rgba(139, 92, 246, 0.9) 0%, rgba(0, 0, 0, 0.6) 50%, transparent 100%);
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.58) 0%, rgba(0, 0, 0, 0.22) 42%, rgba(255, 255, 255, 0.26) 100%);
 }
 
 .fold-text-piece[data-fold-hinge='left']::after {
-  background: linear-gradient(90deg, rgba(139, 92, 246, 0.9) 0%, rgba(0, 0, 0, 0.6) 50%, transparent 100%);
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.58) 0%, rgba(0, 0, 0, 0.22) 42%, rgba(255, 255, 255, 0.26) 100%);
 }
 
 .fold-text-piece[data-fold-hinge='right']::after {
-  background: linear-gradient(270deg, rgba(139, 92, 246, 0.9) 0%, rgba(0, 0, 0, 0.6) 50%, transparent 100%);
+  background: linear-gradient(270deg, rgba(0, 0, 0, 0.58) 0%, rgba(0, 0, 0, 0.22) 42%, rgba(255, 255, 255, 0.26) 100%);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -152,16 +153,16 @@ const FoldText = ({
   text = 'Design unfolds',
   splitBy = 'char',
   hinge = 'top',
-  duration = 0.8,
-  stagger = 0.05,
+  duration = 0.65,
+  stagger = 0.045,
   delay = 0,
   ease = 'power3.out',
-  perspective = 800,
-  creaseShading = 0.7,
+  perspective = 700,
+  creaseShading = 0.55,
   trigger = 'mount',
   fontSize = 80,
   fontWeight = 800,
-  color = '#ffffff',
+  color = '#f7f2e8',
   className = '',
   style = {}
 }: FoldTextProps) => {
