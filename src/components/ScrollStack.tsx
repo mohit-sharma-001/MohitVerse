@@ -354,7 +354,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
         willChange: 'scroll-position'
       }}
     >
-      <div className={`scroll-stack-inner px-4 sm:px-8 md:px-16 pb-[30rem] min-h-screen ${useWindowScroll ? 'pt-[10vh]' : 'pt-4 sm:pt-6'}`}>
+      <div className={`scroll-stack-inner px-4 sm:px-8 md:px-16 pb-32 ${useWindowScroll ? 'pt-[10vh]' : 'pt-4 sm:pt-6'}`}>
         {children}
         {/* Spacer so the last pin can release cleanly */}
         <div className="scroll-stack-end w-full h-px" />

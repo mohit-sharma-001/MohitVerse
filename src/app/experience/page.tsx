@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import TextPressure from "@/components/TextPressure";
+import FoldText from "@/components/FoldText";
 import DotField from "@/components/DotField";
 import GridScanOverlay from "@/components/GridScanOverlay";
 import ScrollStack, { ScrollStackItem } from "@/components/ScrollStack";
@@ -72,17 +72,18 @@ export default function ExperiencePage() {
           </div>
         </header>
 
-        {/* 1. "EXPERIENCE" Heading with TextPressure */}
-        <div className="relative w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-20 sm:h-28 flex items-center justify-center overflow-hidden pt-4 pb-2">
-          <TextPressure
+        {/* 1. "EXPERIENCE" Heading with FoldText */}
+        <div className="relative w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-20 sm:h-28 flex items-center justify-center overflow-hidden pt-4 pb-2 text-center">
+          <FoldText
             text="EXPERIENCE"
-            textColor="#ffffff"
-            strokeColor="#8b5cf6"
-            stroke={true}
-            strokeWidth={3}
-            minFontSize={48}
-            scale={false}
-            fontFamily="Roboto Flex"
+            fontSize={56}
+            fontWeight={800}
+            color="#ffffff"
+            splitBy="char"
+            hinge="top"
+            duration={0.7}
+            stagger={0.04}
+            trigger="mount"
           />
         </div>
       </div>
@@ -90,7 +91,7 @@ export default function ExperiencePage() {
       {/* 2. Self-Contained ScrollStack Box (Bounded in viewport) */}
       <div
         className="relative z-10 w-full max-w-5xl mx-auto flex-1 overflow-hidden px-4 sm:px-6 lg:px-8"
-        style={{ height: "calc(100vh - 200px)" }}
+        style={{ height: "calc(100vh - 170px)" }}
       >
         <ScrollStack
           useWindowScroll={false}
