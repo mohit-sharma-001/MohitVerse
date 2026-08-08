@@ -90,13 +90,55 @@ export default function ExperiencePage() {
           rotationAmount={0}
           blurAmount={0.5}
         >
-          {/* Card 1 */}
-          <ScrollStackItem itemClassName="bg-[#0e0f1d]/95 border border-purple-500/20 backdrop-blur-xl shadow-[0_0_35px_rgba(139,92,246,0.15)] hover:border-purple-500/50 transition-colors">
+          {/* Card 1: Job Simulations (April – May 2026) - Amber/Gold Accent */}
+          <ScrollStackItem itemClassName="bg-gradient-to-br from-[#281c0a]/95 via-[#0e0f1d]/95 to-[#0e0f1d]/95 border border-amber-400/40 backdrop-blur-xl shadow-[0_0_35px_rgba(251,191,36,0.18)] hover:border-amber-400/70 transition-all duration-300">
             <div className="h-full flex flex-col justify-between p-2 sm:p-4">
               <div className="space-y-3">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-950/60 border border-purple-500/30 text-xs font-mono text-purple-300">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-950/60 border border-amber-500/40 text-xs font-mono text-amber-300">
+                  <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                  <span>01 // SIMULATIONS</span>
+                </div>
+                <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                  Job Simulations (Forage)
+                </h3>
+                <p className="text-sm sm:text-base font-mono text-amber-300/90 font-medium">
+                  Deloitte · JPMorgan Chase · Skyscanner · Tata (x2) · April – May 2026
+                </p>
+              </div>
+              <p className="text-slate-300 text-sm sm:text-base leading-relaxed font-normal">
+                Completed 5 industry job simulations spanning software engineering, data visualization, and AI-driven analytics.
+              </p>
+            </div>
+          </ScrollStackItem>
+
+          {/* Card 2: Open Source Contributor (May 2026) - Cyan/Teal Accent */}
+          <ScrollStackItem itemClassName="bg-gradient-to-br from-[#0a1e28]/95 via-[#0e0f1d]/95 to-[#0e0f1d]/95 border border-cyan-400/40 backdrop-blur-xl shadow-[0_0_35px_rgba(34,211,238,0.18)] hover:border-cyan-400/70 transition-all duration-300">
+            <div className="h-full flex flex-col justify-between p-2 sm:p-4">
+              <div className="space-y-3">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/60 border border-cyan-500/40 text-xs font-mono text-cyan-300">
+                  <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+                  <span>02 // OPEN SOURCE</span>
+                </div>
+                <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                  Open Source Contributor
+                </h3>
+                <p className="text-sm sm:text-base font-mono text-cyan-300/90 font-medium">
+                  pyfenn/fenn (Python ML Framework) · PR #161 Merged · May 2026
+                </p>
+              </div>
+              <p className="text-slate-300 text-sm sm:text-base leading-relaxed font-normal">
+                Added mobile-responsive CSS to the Flask-based dashboard — fixed toolbar stacking, search bar, filter buttons, and stats grid layout across screen sizes.
+              </p>
+            </div>
+          </ScrollStackItem>
+
+          {/* Card 3: Cognifyz Technologies (July 17 – August 17, 2026) - Purple Accent */}
+          <ScrollStackItem itemClassName="bg-gradient-to-br from-[#16102a]/95 via-[#0e0f1d]/95 to-[#0e0f1d]/95 border border-purple-500/40 backdrop-blur-xl shadow-[0_0_35px_rgba(139,92,246,0.18)] hover:border-purple-500/70 transition-all duration-300">
+            <div className="h-full flex flex-col justify-between p-2 sm:p-4">
+              <div className="space-y-3">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-950/60 border border-purple-500/40 text-xs font-mono text-purple-300">
                   <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
-                  <span>01 // INTERNSHIP</span>
+                  <span>03 // INTERNSHIP</span>
                 </div>
                 <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
                   Cognifyz Technologies
@@ -107,48 +149,6 @@ export default function ExperiencePage() {
               </div>
               <p className="text-slate-300 text-sm sm:text-base leading-relaxed font-normal">
                 Completed 6 structured tasks across 3 levels — responsive landing pages, image galleries, interactive calculators, color changers, Bootstrap grid layouts. Hands-on with DOM manipulation, responsive design, and ES6 JavaScript.
-              </p>
-            </div>
-          </ScrollStackItem>
-
-          {/* Card 2 */}
-          <ScrollStackItem itemClassName="bg-[#0e0f1d]/95 border border-purple-500/20 backdrop-blur-xl shadow-[0_0_35px_rgba(139,92,246,0.15)] hover:border-purple-500/50 transition-colors">
-            <div className="h-full flex flex-col justify-between p-2 sm:p-4">
-              <div className="space-y-3">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-950/60 border border-purple-500/30 text-xs font-mono text-purple-300">
-                  <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
-                  <span>02 // OPEN SOURCE</span>
-                </div>
-                <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                  Open Source Contributor
-                </h3>
-                <p className="text-sm sm:text-base font-mono text-purple-300/90 font-medium">
-                  pyfenn/fenn (Python ML Framework) · PR #161 Merged · May 2026
-                </p>
-              </div>
-              <p className="text-slate-300 text-sm sm:text-base leading-relaxed font-normal">
-                Added mobile-responsive CSS to the Flask-based dashboard — fixed toolbar stacking, search bar, filter buttons, and stats grid layout across screen sizes.
-              </p>
-            </div>
-          </ScrollStackItem>
-
-          {/* Card 3 */}
-          <ScrollStackItem itemClassName="bg-[#0e0f1d]/95 border border-purple-500/20 backdrop-blur-xl shadow-[0_0_35px_rgba(139,92,246,0.15)] hover:border-purple-500/50 transition-colors">
-            <div className="h-full flex flex-col justify-between p-2 sm:p-4">
-              <div className="space-y-3">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-950/60 border border-purple-500/30 text-xs font-mono text-purple-300">
-                  <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
-                  <span>03 // SIMULATIONS</span>
-                </div>
-                <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-                  Job Simulations (Forage)
-                </h3>
-                <p className="text-sm sm:text-base font-mono text-purple-300/90 font-medium">
-                  Deloitte · JPMorgan Chase · Skyscanner · Tata (x2) · April – May 2026
-                </p>
-              </div>
-              <p className="text-slate-300 text-sm sm:text-base leading-relaxed font-normal">
-                Completed 5 industry job simulations spanning software engineering, data visualization, and AI-driven analytics.
               </p>
             </div>
           </ScrollStackItem>

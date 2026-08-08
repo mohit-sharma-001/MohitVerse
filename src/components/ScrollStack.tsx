@@ -222,6 +222,15 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
   }, [updateCardTransforms]);
 
   const setupLenis = useCallback(() => {
+    if (animationFrameRef.current) {
+      cancelAnimationFrame(animationFrameRef.current);
+      animationFrameRef.current = null;
+    }
+    if (lenisRef.current) {
+      lenisRef.current.destroy();
+      lenisRef.current = null;
+    }
+
     if (useWindowScroll) {
       const lenis = new Lenis({
         duration: 1.2,
@@ -340,7 +349,6 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
       style={{
         overscrollBehavior: 'contain',
         WebkitOverflowScrolling: 'touch',
-        scrollBehavior: 'smooth',
         WebkitTransform: 'translateZ(0)',
         transform: 'translateZ(0)',
         willChange: 'scroll-position'
