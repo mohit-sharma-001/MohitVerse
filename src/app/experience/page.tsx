@@ -11,6 +11,14 @@ export default function ExperiencePage() {
   const [isEntering, setIsEntering] = useState(true);
 
   useEffect(() => {
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, []);
+
+  useEffect(() => {
     const timer = setTimeout(() => {
       setIsEntering(false);
     }, 1000);
@@ -79,8 +87,11 @@ export default function ExperiencePage() {
         </div>
       </div>
 
-      {/* 2. Self-Contained ScrollStack Box (Scrolls internally on hover) */}
-      <div className="relative z-10 w-full max-w-5xl mx-auto flex-1 min-h-0 overflow-hidden px-4 sm:px-6 lg:px-8">
+      {/* 2. Self-Contained ScrollStack Box (Bounded in viewport) */}
+      <div
+        className="relative z-10 w-full max-w-5xl mx-auto flex-1 overflow-hidden px-4 sm:px-6 lg:px-8"
+        style={{ height: "calc(100vh - 200px)" }}
+      >
         <ScrollStack
           useWindowScroll={false}
           itemDistance={100}

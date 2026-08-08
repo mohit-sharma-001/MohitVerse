@@ -595,7 +595,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                 borderRadius: cardRadius,
                 pointerEvents: 'none',
                 zIndex: 4,
-                background: 'linear-gradient(to bottom, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.15) 35%, transparent 55%)'
+                background: 'linear-gradient(to bottom, rgba(7, 9, 20, 0.85) 0%, rgba(7, 9, 20, 0.5) 45%, transparent 80%)'
               }}
             />
 
@@ -605,22 +605,19 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
               style={{
                 transform:
                   'translate3d(calc(var(--pointer-from-left) * -6px + 3px), calc(var(--pointer-from-top) * -6px + 3px), 0.1px)',
-                mixBlendMode: 'luminosity',
+                mixBlendMode: 'normal',
                 gridArea: '1 / -1',
                 borderRadius: cardRadius,
                 pointerEvents: 'none'
               }}
             >
-              <div className="w-full absolute flex flex-col" style={{ top: '3em', display: 'flex', gridArea: 'auto' }}>
+              <div className="w-full absolute flex flex-col items-center px-4" style={{ top: '2.5em', display: 'flex', gridArea: 'auto' }}>
                 <h3
-                  className="font-semibold m-0"
+                  className="font-bold m-0 tracking-tight text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.95)]"
                   style={{
-                    fontSize: 'min(5svh, 3em)',
-                    backgroundImage: 'linear-gradient(to bottom, #fff, #6f6fbe)',
-                    backgroundSize: '1em 1.5em',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text',
-                    WebkitBackgroundClip: 'text',
+                    fontSize: 'min(4.5svh, 2.5em)',
+                    color: '#ffffff',
+                    textShadow: '0 2px 14px rgba(0,0,0,0.95), 0 0 20px rgba(139,92,246,0.6)',
                     display: 'block',
                     gridArea: 'auto',
                     borderRadius: '0',
@@ -630,17 +627,14 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                   {name}
                 </h3>
                 <p
-                  className="font-semibold whitespace-nowrap mx-auto w-min"
+                  className="font-medium mx-auto w-full max-w-[90%] text-center leading-snug drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]"
                   style={{
                     position: 'relative',
-                    top: '-12px',
-                    fontSize: '16px',
+                    top: '4px',
+                    fontSize: '15px',
                     margin: '0 auto',
-                    backgroundImage: 'linear-gradient(to bottom, #fff, #4a4ac0)',
-                    backgroundSize: '1em 1.5em',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text',
-                    WebkitBackgroundClip: 'text',
+                    color: '#e9d5ff',
+                    textShadow: '0 2px 10px rgba(0,0,0,0.95), 0 0 15px rgba(139,92,246,0.4)',
                     display: 'block',
                     gridArea: 'auto',
                     borderRadius: '0',
