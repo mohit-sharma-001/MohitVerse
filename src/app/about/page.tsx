@@ -137,7 +137,7 @@ export default function AboutPage() {
                 fontSize={72}
                 fontWeight={800}
                 letterSpacing={-2}
-                trigger="mount"
+                trigger="hover"
                 fillMode="wipe"
                 drawDuration={1.6}
                 fillDelay={0.2}

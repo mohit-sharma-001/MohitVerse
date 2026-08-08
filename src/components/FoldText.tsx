@@ -314,7 +314,7 @@ const FoldText = ({
   return (
     <>
       <style>{FOLD_TEXT_STYLES}</style>
-      <span ref={rootRef} className={`fold-text ${className}`.trim()} style={rootStyle}>
+      <span ref={rootRef} className={`fold-text ${trigger === 'hover' ? 'cursor-pointer' : ''} ${className}`.trim()} style={rootStyle}>
         <span className="fold-text-sr-only">{text}</span>
         <span className="fold-text-visual" aria-hidden="true">
           {segments}

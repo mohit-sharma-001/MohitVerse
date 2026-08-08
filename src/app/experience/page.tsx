@@ -84,11 +84,11 @@ export default function ExperiencePage() {
             color="#ffffff"
             splitBy="char"
             hinge="top"
-            duration={0.9}
-            stagger={0.05}
-            delay={0.6}
+            duration={0.7}
+            stagger={0.04}
+            delay={0}
             creaseShading={0.8}
-            trigger="mount"
+            trigger="hover"
           />
         </div>
       </div>
