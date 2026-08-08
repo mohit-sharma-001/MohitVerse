@@ -19,7 +19,7 @@ export default function ExperiencePage() {
 
   return (
     <main
-      className="relative w-full min-h-screen text-white selection:bg-purple-500/30 selection:text-white overflow-x-hidden"
+      className="relative w-full h-screen overflow-hidden text-white selection:bg-purple-500/30 selection:text-white flex flex-col"
       style={{ backgroundColor: "#09090f" }}
     >
       {/* Full-page Ambient Background Layer (DotField) */}
@@ -39,33 +39,33 @@ export default function ExperiencePage() {
 
       <GridScanOverlay active={isEntering} destinationName="EXPERIENCE" />
 
-      {/* Top Header / Back Navigation */}
-      <header className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 flex items-center justify-between z-30 relative">
-        <Link
-          href="/intro"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 hover:border-purple-500/50 hover:bg-purple-900/20 text-xs sm:text-sm font-mono text-slate-300 hover:text-white transition-all duration-300 group shadow-lg backdrop-blur-md"
-        >
-          <svg
-            className="w-4 h-4 text-purple-400 group-hover:-translate-x-1 transition-transform"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={2}
+      {/* Static Top Header & Heading Section (Sits outside ScrollStack) */}
+      <div className="relative z-30 w-full shrink-0 flex flex-col">
+        {/* Top Header / Back Navigation */}
+        <header className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 flex items-center justify-between">
+          <Link
+            href="/intro"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 hover:border-purple-500/50 hover:bg-purple-900/20 text-xs sm:text-sm font-mono text-slate-300 hover:text-white transition-all duration-300 group shadow-lg backdrop-blur-md"
           >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-          </svg>
-          <span>Back to Intro</span>
-        </Link>
+            <svg
+              className="w-4 h-4 text-purple-400 group-hover:-translate-x-1 transition-transform"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            <span>Back to Intro</span>
+          </Link>
 
-        <div className="text-xs font-mono text-purple-400/70 tracking-widest uppercase">
-          MOHITVERSE // EXPERIENCE
-        </div>
-      </header>
+          <div className="text-xs font-mono text-purple-400/70 tracking-widest uppercase">
+            MOHITVERSE // EXPERIENCE
+          </div>
+        </header>
 
-      {/* Main Container */}
-      <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 pb-24">
         {/* 1. "EXPERIENCE" Heading with TextPressure */}
-        <div className="relative w-full h-24 sm:h-32 flex items-center justify-center overflow-hidden mb-6 sm:mb-10">
+        <div className="relative w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-20 sm:h-28 flex items-center justify-center overflow-hidden pt-4 pb-2">
           <TextPressure
             text="EXPERIENCE"
             textColor="#ffffff"
@@ -77,10 +77,12 @@ export default function ExperiencePage() {
             fontFamily="Roboto Flex"
           />
         </div>
+      </div>
 
-        {/* 2. Interactive ScrollStack Cards */}
+      {/* 2. Self-Contained ScrollStack Box (Scrolls internally on hover) */}
+      <div className="relative z-10 w-full max-w-5xl mx-auto flex-1 min-h-0 overflow-hidden px-4 sm:px-6 lg:px-8">
         <ScrollStack
-          useWindowScroll={true}
+          useWindowScroll={false}
           itemDistance={100}
           itemScale={0.03}
           itemStackDistance={30}
