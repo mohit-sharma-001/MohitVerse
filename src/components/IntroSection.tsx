@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import TextPressure from "@/components/TextPressure";
 import ScrollExpand from "@/components/ScrollExpand";
 import Folder from "@/components/Folder";
-import ElectricBorder from "@/components/ElectricBorder";
 
 interface IntroSectionProps {
   /** Optional handler when folder is opened */
@@ -96,7 +95,11 @@ export default function IntroSection({ onFolderOpen }: IntroSectionProps) {
   const handleNavigate = useCallback(
     (key: string) => {
       console.log(`[MOHITVERSE] Flashcard clicked: ${key}`);
-      router.push(`/#${key}`);
+      if (key === "about") {
+        router.push("/about");
+      } else {
+        router.push(`/#${key}`);
+      }
     },
     [router]
   );
@@ -184,7 +187,8 @@ export default function IntroSection({ onFolderOpen }: IntroSectionProps) {
               {FLASHCARDS.map((card, index) => (
                 <div
                   key={card.key}
-                  className={`w-36 h-36 sm:w-44 sm:h-44 md:w-48 md:h-48 aspect-square transform transition-all duration-500 ease-out ${
+                  onClick={() => handleNavigate(card.key)}
+                  className={`w-36 h-36 sm:w-44 sm:h-44 md:w-48 md:h-48 aspect-square relative group cursor-pointer transform transition-all duration-500 ease-out ${
                     cardsVisible
                       ? "scale-100 opacity-100 translate-y-0"
                       : "scale-50 opacity-0 translate-y-8 pointer-events-none"
@@ -193,51 +197,85 @@ export default function IntroSection({ onFolderOpen }: IntroSectionProps) {
                     transitionDelay: `${index * 80}ms`,
                   }}
                 >
-                  <ElectricBorder
-                    color={card.color}
-                    speed={1}
-                    chaos={0.16}
-                    borderRadius={16}
-                    className="w-full h-full"
+                  {/* Outer Ambient Backdrop Glow on Hover */}
+                  <div
+                    className="absolute -inset-0.5 rounded-[18px] opacity-20 group-hover:opacity-80 transition-opacity duration-500 blur-md pointer-events-none"
+                    style={{
+                      background: `radial-gradient(circle at center, ${card.color} 0%, transparent 80%)`,
+                    }}
+                  />
+
+                  {/* Cyber Tech Main Card Container */}
+                  <div
+                    className="relative w-full h-full flex flex-col items-center justify-center gap-2.5 sm:gap-3 p-4 sm:p-6 bg-[#070914]/90 backdrop-blur-xl rounded-[16px] border border-white/10 group-hover:border-white/20 transition-all duration-300 overflow-hidden shadow-2xl group-hover:-translate-y-1"
+                    style={{
+                      boxShadow: `0 8px 32px rgba(0, 0, 0, 0.6)`,
+                    }}
                   >
+                    {/* Glowing Tech Precision Border Line */}
                     <div
-                      className="relative w-full h-full flex flex-col items-center justify-center gap-2 sm:gap-3 p-4 sm:p-6 cursor-pointer bg-[#070914]/95 backdrop-blur-xl hover:bg-[#0f1326] transition-all rounded-[16px] group overflow-hidden"
-                      onClick={() => handleNavigate(card.key)}
+                      className="absolute inset-0 rounded-[16px] pointer-events-none border transition-opacity duration-300 opacity-40 group-hover:opacity-100"
+                      style={{
+                        borderColor: `${card.color}55`,
+                        boxShadow: `inset 0 0 15px ${card.color}15, 0 0 15px ${card.color}25`,
+                      }}
+                    />
+
+                    {/* Top Tech Laser Accent Strip */}
+                    <div
+                      className="absolute top-0 inset-x-4 h-[2px] opacity-50 group-hover:opacity-100 transition-opacity duration-300"
+                      style={{
+                        background: `linear-gradient(90deg, transparent 0%, ${card.color} 50%, transparent 100%)`,
+                      }}
+                    />
+
+                    {/* Precision Cyber Corner Brackets */}
+                    <div
+                      className="absolute top-2 left-2 w-3 h-3 border-t-2 border-l-2 opacity-50 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300"
+                      style={{ borderColor: card.color }}
+                    />
+                    <div
+                      className="absolute top-2 right-2 w-3 h-3 border-t-2 border-r-2 opacity-50 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300"
+                      style={{ borderColor: card.color }}
+                    />
+                    <div
+                      className="absolute bottom-2 left-2 w-3 h-3 border-b-2 border-l-2 opacity-50 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300"
+                      style={{ borderColor: card.color }}
+                    />
+                    <div
+                      className="absolute bottom-2 right-2 w-3 h-3 border-b-2 border-r-2 opacity-50 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300"
+                      style={{ borderColor: card.color }}
+                    />
+
+                    {/* Ambient Color Center Glow inside Card */}
+                    <div
+                      className="absolute inset-0 opacity-15 group-hover:opacity-30 transition-opacity duration-500 pointer-events-none rounded-[16px]"
+                      style={{
+                        background: `radial-gradient(circle at center, ${card.color} 0%, transparent 75%)`,
+                      }}
+                    />
+
+                    {/* Cyber Micro Grid Scanlines Pattern */}
+                    <div
+                      className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity pointer-events-none bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:12px_12px]"
+                    />
+
+                    {/* Icon Badge */}
+                    <div
+                      className="p-3 sm:p-3.5 rounded-xl bg-white/5 border border-white/10 group-hover:border-white/20 group-hover:scale-110 transition-all duration-300 relative z-10"
+                      style={{
+                        boxShadow: `0 0 20px ${card.color}25`,
+                        background: `linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%)`,
+                      }}
                     >
-                      {/* Subtle Ambient Color Glow inside Card */}
-                      <div
-                        className="absolute inset-0 opacity-10 group-hover:opacity-25 transition-opacity pointer-events-none rounded-[16px]"
-                        style={{
-                          background: `radial-gradient(circle at center, ${card.color} 0%, transparent 70%)`,
-                        }}
-                      />
-
-                      {/* Cyber Tech Corner Accents */}
-                      <div
-                        className="absolute top-2 left-2 w-2.5 h-2.5 border-t-2 border-l-2 opacity-60 group-hover:opacity-100 transition-opacity"
-                        style={{ borderColor: card.color }}
-                      />
-                      <div
-                        className="absolute bottom-2 right-2 w-2.5 h-2.5 border-b-2 border-r-2 opacity-60 group-hover:opacity-100 transition-opacity"
-                        style={{ borderColor: card.color }}
-                      />
-
-                      {/* Icon Badge */}
-                      <div
-                        className="p-3 rounded-xl bg-white/5 border border-white/10 group-hover:scale-110 transition-all duration-300 relative z-10"
-                        style={{
-                          boxShadow: `0 0 16px ${card.color}33`,
-                        }}
-                      >
-                        {card.icon}
-                      </div>
-
-                      {/* Flashcard Label */}
-                      <span className="text-white font-semibold text-xs sm:text-sm tracking-wider uppercase text-center relative z-10 font-mono drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] group-hover:text-white">
-                        {card.label}
-                      </span>
+                      {card.icon}
                     </div>
-                  </ElectricBorder>
+
+                    {/* Flashcard Label */}
+                    <span className="text-white font-mono font-semibold text-xs sm:text-sm tracking-wider uppercase text-center relative z-10 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] group-hover:text-white group-hover:tracking-widest transition-all duration-300">
+                      {card.label}
+                    </span>
+                  </div>
                 </div>
               ))}
             </div>
