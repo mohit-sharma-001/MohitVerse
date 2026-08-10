@@ -99,6 +99,8 @@ export default function IntroSection({ onFolderOpen }: IntroSectionProps) {
         router.push("/about");
       } else if (key === "experience") {
         router.push("/experience");
+      } else if (key === "techstacks") {
+        router.push("/tech-stacks");
       } else {
         router.push(`/#${key}`);
       }
