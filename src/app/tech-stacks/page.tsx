@@ -2,9 +2,9 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import DotField from "@/components/DotField";
+import FaultyTerminal from "@/components/FaultyTerminal";
 import GridScanOverlay from "@/components/GridScanOverlay";
-import TextPressure from "@/components/TextPressure";
+import FuzzyText from "@/components/FuzzyText";
 import LogoLoop, { LogoItem } from "@/components/LogoLoop";
 import {
   SiPython,
@@ -35,50 +35,74 @@ import {
 } from "react-icons/si";
 
 const ICON_SIZE = 40;
-const ICON_CLASS = "text-white/70 transition-colors duration-300";
+const ICON_CLASS = "text-white/70 group-hover/logo:text-white transition-colors duration-300";
+
+const createIconItem = (
+  Icon: React.ComponentType<{ size?: number; className?: string }>,
+  title: string
+): LogoItem => ({
+  node: (
+    <div className="flex flex-col items-center justify-center gap-2 group/logo" title={title}>
+      <Icon size={ICON_SIZE} className={ICON_CLASS} />
+      <span className="text-[11px] font-mono tracking-wider text-slate-400 group-hover/logo:text-purple-300 transition-colors duration-300 select-none">
+        {title}
+      </span>
+    </div>
+  ),
+  title,
+});
+
+const createPillItem = (title: string): LogoItem => ({
+  node: (
+    <span className="px-4 py-2 rounded-full bg-[#0e0f1d]/90 border border-purple-900/40 hover:border-purple-400/60 hover:bg-purple-900/40 text-purple-200 hover:text-white font-mono text-xs font-semibold tracking-wider transition-all duration-300 shadow-md hover:shadow-[0_0_15px_rgba(139,92,246,0.3)] whitespace-nowrap select-none">
+      {title}
+    </span>
+  ),
+  title,
+});
 
 const languagesLogos: LogoItem[] = [
-  { node: <SiPython size={ICON_SIZE} className={ICON_CLASS} />, title: "Python" },
-  { node: <SiC size={ICON_SIZE} className={ICON_CLASS} />, title: "C" },
-  { node: <SiJavascript size={ICON_SIZE} className={ICON_CLASS} />, title: "JavaScript" },
-  { node: <SiTypescript size={ICON_SIZE} className={ICON_CLASS} />, title: "TypeScript" },
-  { node: <SiCplusplus size={ICON_SIZE} className={ICON_CLASS} />, title: "C++" },
+  createIconItem(SiPython, "Python"),
+  createIconItem(SiC, "C"),
+  createIconItem(SiJavascript, "JavaScript"),
+  createIconItem(SiTypescript, "TypeScript"),
+  createIconItem(SiCplusplus, "C++"),
 ];
 
 const frontendLogos: LogoItem[] = [
-  { node: <SiHtml5 size={ICON_SIZE} className={ICON_CLASS} />, title: "HTML5" },
-  { node: <SiCss size={ICON_SIZE} className={ICON_CLASS} />, title: "CSS3" },
-  { node: <SiReact size={ICON_SIZE} className={ICON_CLASS} />, title: "React" },
-  { node: <SiNextdotjs size={ICON_SIZE} className={ICON_CLASS} />, title: "Next.js" },
-  { node: <SiVite size={ICON_SIZE} className={ICON_CLASS} />, title: "Vite" },
-  { node: <SiTailwindcss size={ICON_SIZE} className={ICON_CLASS} />, title: "Tailwind CSS" },
+  createIconItem(SiHtml5, "HTML5"),
+  createIconItem(SiCss, "CSS3"),
+  createIconItem(SiReact, "React"),
+  createIconItem(SiNextdotjs, "Next.js"),
+  createIconItem(SiVite, "Vite"),
+  createIconItem(SiTailwindcss, "Tailwind CSS"),
 ];
 
 const backendLogos: LogoItem[] = [
-  { node: <SiFlask size={ICON_SIZE} className={ICON_CLASS} />, title: "Flask" },
-  { node: <SiFastapi size={ICON_SIZE} className={ICON_CLASS} />, title: "FastAPI" },
-  { node: <SiNodedotjs size={ICON_SIZE} className={ICON_CLASS} />, title: "Node.js" },
-  { node: <SiExpress size={ICON_SIZE} className={ICON_CLASS} />, title: "Express" },
-  { node: <SiSqlite size={ICON_SIZE} className={ICON_CLASS} />, title: "SQLite" },
-  { node: <SiPostgresql size={ICON_SIZE} className={ICON_CLASS} />, title: "PostgreSQL" },
-  { node: <SiSupabase size={ICON_SIZE} className={ICON_CLASS} />, title: "Supabase" },
-  { node: <SiPrisma size={ICON_SIZE} className={ICON_CLASS} />, title: "Prisma" },
+  createIconItem(SiFlask, "Flask"),
+  createIconItem(SiFastapi, "FastAPI"),
+  createIconItem(SiNodedotjs, "Node.js"),
+  createIconItem(SiExpress, "Express"),
+  createIconItem(SiSqlite, "SQLite"),
+  createIconItem(SiPostgresql, "PostgreSQL"),
+  createIconItem(SiSupabase, "Supabase"),
+  createIconItem(SiPrisma, "Prisma"),
 ];
 
 const aimlToolsLogos: LogoItem[] = [
-  { node: <SiPytorch size={ICON_SIZE} className={ICON_CLASS} />, title: "PyTorch" },
-  { node: <SiHuggingface size={ICON_SIZE} className={ICON_CLASS} />, title: "Hugging Face" },
-  { node: <SiGit size={ICON_SIZE} className={ICON_CLASS} />, title: "Git" },
-  { node: <SiGithub size={ICON_SIZE} className={ICON_CLASS} />, title: "GitHub" },
-  { node: <SiVercel size={ICON_SIZE} className={ICON_CLASS} />, title: "Vercel" },
-  { node: <SiDocker size={ICON_SIZE} className={ICON_CLASS} />, title: "Docker" },
-  { title: "Stable Diffusion" },
-  { title: "Ollama" },
-  { title: "Gemini API" },
-  { title: "FAISS" },
-  { title: "Render" },
-  { title: "GSAP" },
-  { title: "Framer Motion" },
+  createIconItem(SiPytorch, "PyTorch"),
+  createIconItem(SiHuggingface, "Hugging Face"),
+  createIconItem(SiGit, "Git"),
+  createIconItem(SiGithub, "GitHub"),
+  createIconItem(SiVercel, "Vercel"),
+  createIconItem(SiDocker, "Docker"),
+  createPillItem("Stable Diffusion"),
+  createPillItem("Ollama"),
+  createPillItem("Gemini API"),
+  createPillItem("FAISS"),
+  createPillItem("Render"),
+  createPillItem("GSAP"),
+  createPillItem("Framer Motion"),
 ];
 
 export default function TechStacksPage() {
@@ -96,18 +120,20 @@ export default function TechStacksPage() {
       className="relative w-full min-h-screen text-white selection:bg-purple-500/30 selection:text-white overflow-x-hidden"
       style={{ backgroundColor: "#09090f" }}
     >
-      {/* Full-page Ambient Background Layer (DotField) */}
-      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <DotField
-          dotRadius={2.5}
-          dotSpacing={20}
-          cursorRadius={450}
-          bulgeStrength={60}
-          glowRadius={0}
-          gradientFrom="rgba(139, 92, 246, 0.55)"
-          gradientTo="rgba(139, 92, 246, 0.28)"
-          glowColor="#8b5cf6"
-          sparkle={true}
+      {/* Full-page Ambient Background Layer (FaultyTerminal) */}
+      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden opacity-50">
+        <FaultyTerminal
+          tint="#8b5cf6"
+          scale={1.2}
+          digitSize={1.4}
+          scanlineIntensity={0.25}
+          glitchAmount={0.8}
+          flickerAmount={0.5}
+          noiseAmp={0.8}
+          curvature={0.15}
+          mouseReact={true}
+          mouseStrength={0.25}
+          brightness={0.7}
         />
       </div>
 
@@ -139,18 +165,19 @@ export default function TechStacksPage() {
       {/* Main Content Container */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16">
         
-        {/* TECH STACKS Heading using TextPressure */}
-        <div className="relative w-full max-w-5xl mx-auto h-24 sm:h-32 flex items-center justify-center overflow-visible mb-12 sm:mb-16 text-center">
-          <TextPressure
-            text="TECH STACKS"
-            textColor="#ffffff"
-            strokeColor="#8b5cf6"
-            stroke={true}
-            strokeWidth={3}
-            minFontSize={64}
-            scale={false}
-            fontFamily="Roboto Flex"
-          />
+        {/* TECH STACKS Heading using FuzzyText */}
+        <div className="relative w-full max-w-5xl mx-auto flex items-center justify-center mb-12 sm:mb-16 text-center select-none">
+          <FuzzyText
+            baseIntensity={0.18}
+            hoverIntensity={0.55}
+            enableHover={true}
+            color="#ffffff"
+            fontSize="clamp(2.5rem, 7vw, 5.5rem)"
+            fontWeight={900}
+            fuzzRange={25}
+          >
+            TECH STACKS
+          </FuzzyText>
         </div>
 
         {/* 4 Category Sections */}
